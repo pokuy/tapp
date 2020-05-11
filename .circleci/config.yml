@@ -6,6 +6,15 @@ jobs:
             - image: ryanpedersen42/deno-base:0.0.1
         steps:
             - checkout
+            - restore_cache:
+                key: dependencies
+                paths:
+                    - dependencies.ts
+            - run: deno cache dependencies.ts
+            - save_cache:
+                key: dependencies
+                paths:
+                    - dependencies.ts
             - run: deno test
 
 workflows:
