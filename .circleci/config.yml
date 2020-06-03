@@ -15,7 +15,10 @@ jobs:
                 key: dependencies
                 paths:
                     - dependencies.ts
-            - run: deno test
+            - run: 
+                command: |
+                    TESTFILES=$(circleci tests glob "__tests__/**.ts" | circleci tests split --split-by=timings)
+                    deno test $TESTFILES
 
 workflows:
     build_test_deploy:
