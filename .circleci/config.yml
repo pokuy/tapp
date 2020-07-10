@@ -7,16 +7,15 @@ jobs:
         steps:
             - checkout
             - restore_cache:
-                key: dependencies
+                key: v1-{{ checksum "dependencies.ts" }}
                 paths:
-                    - ~/.cache/deno
+                    - dependencies.ts
             - run: deno cache dependencies.ts
             - save_cache:
-                key: dependencies
+                key: v1-{{ checksum "dependencies.ts" }}
                 paths:
-                    - ~/.cache/deno
+                    - dependencies.ts
             - run: deno test
-
 workflows:
     build_test_deploy:
         jobs:
