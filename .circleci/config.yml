@@ -9,12 +9,12 @@ jobs:
             - restore_cache:
                 key: dependencies
                 paths:
-                    - ~/deps/dependencies.ts
+                    - ~/.cache/deno
             - run: deno cache dependencies.ts
             - save_cache:
                 key: dependencies
                 paths:
-                    - ~/deps/dependencies.ts
+                    - ~/.cache/deno
             - run: deno test
 
 workflows:
