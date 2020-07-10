@@ -3,7 +3,7 @@ version: 2.1
 jobs:
     build:
         docker:
-            - image: ryanpedersen42/deno-base:0.1.0
+            - image: ryanpedersen42/deno-base-image:latest
         steps:
             - checkout
             - restore_cache:
