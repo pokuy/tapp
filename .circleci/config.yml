@@ -6,14 +6,14 @@ jobs:
             - image: ryanpedersen42/deno-base-image:latest
         steps:
             - checkout
-            - run: echo "export DENO_DIR=$PWD/deps" >> $BASH_ENV
+            # - run: echo "export DENO_DIR=~/deps" >> $BASH_ENV
             - restore_cache:
-                key: v2-{{ checksum "$DENO_DIR/dependencies.ts" }}
+                key: v2-{{ checksum "dependencies/dependencies.ts" }}
                 paths:
                     - dependencies/dependencies.ts
             - run: deno cache dependencies.ts
             - save_cache:
-                key: v2-{{ checksum "$DENO_DIR/dependencies.ts" }}
+                key: v2-{{ checksum "dependencies/dependencies.ts" }}
                 paths:
                     - dependencies/dependencies.ts
             - run: deno test
